@@ -21,17 +21,17 @@ const Product = ({ prod }) => {
    <>
    {edit ? <ImageUpload query={`/product/upload/image`} id={prod._id} uploaded={()=>setEdit(false)}/>:  <div className="card-container" key={prod._id}>
 <div className="card u-clearfix" key={prod._id} >
-  <div className="card-body" key={prod._id}>
+  <div className="card-body">
     <span className="card-number card-circle subtle">Quantity{prod.pQuantity}</span>
     <span className="card-author subtle">₹{prod.price}</span>
-    <h2 className="card-title">{prod.pName}</h2>
+    <h2 className="card-title"  >{prod.pName}</h2>
     {/* <span className="card-description subtle">These last few weeks I have been working hard on a new brunch recipe for you all.</span> */}
-    <div className="card-read">Buy</div>
+    <div className="card-read"  >Buy</div>
     {user!==null && <span onClick={()=>setEdit(true)} className="card-tag card-circle subtle">Edit</span>}
   </div>
-  <img src={`${url}/product/${prod._id}/prodImg`} alt="Product" className="card-media" />
+  <img src={`${url}/product/${prod._id}/prodImg`} alt="Product" className="card-media"  key={prod._id}/>
 </div>
-<div className="card-shadow"></div>
+<div className="card-shadow"   key={`${prod._id}1`}></div>
 
 </div>}
    </>

@@ -11,7 +11,7 @@ const loadProd =(list)=>(
 export const startLoadIni = (query)=>{
     return async (dispatch)=>{
         try {
-            console.log('action',query)
+          
             const res = await axios.get(`${url}/products${query}`)
             
             dispatch(loadProd(res.data))
@@ -71,7 +71,7 @@ export const startRemoveProd = (id)=>{
     return async (dispatch)=>{
         try {
             
-            console.log(localStorage.getItem('Token'))
+            
             const res = await axios.delete(`${url}/product/${id}`,{
                 headers:{
                     'Content-Type':'application/json',

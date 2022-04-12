@@ -1,10 +1,10 @@
 const express = require('express')
 const path = require('path')
-const port = process.env.port || 3001
+const port = process.env.port || 3003
 
 const app = express();
 
-const publicPath = path.join(__dirname,'../public')
+const publicPath = path.join(__dirname,'../build')
 
 app.use(express.static(publicPath))
 

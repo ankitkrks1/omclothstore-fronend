@@ -29,6 +29,7 @@ const Dashboard = () => {
     localStorage.clear();
     dispatch(removeUser());
     console.log(res.data);
+    window.location.reload(true);
   };
   // const handleProdSave = (e) => {
   //   e.preventDefault();

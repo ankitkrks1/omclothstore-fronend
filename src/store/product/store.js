@@ -9,7 +9,7 @@ export default createStore(
     {
       product: productReducer,
       user:userReducer,
-      bill:billReducer
+      bill:billReducer,
     },
   ), applyMiddleware(thunk)
 );

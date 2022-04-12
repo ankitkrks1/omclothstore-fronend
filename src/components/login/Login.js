@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { Navigate } from "react-router-dom";
 import { addUser } from "../../store/user/userAction";
-import { useDispatch, } from "react-redux";
+import { useDispatch,} from "react-redux";
 import "./login.css";
 const url = process.env.REACT_APP_API_URL;
 const Login = () => {
@@ -10,6 +10,8 @@ const Login = () => {
   const [signup, setSingup] = useState(false);
   const [password, setPassword] = useState();
   const [isLogin, setIsLogin] = useState(false);
+
+
 
   const dispatch = useDispatch();
 
@@ -20,7 +22,7 @@ const Login = () => {
         name,
         password,
       });
-      console.log(res)
+      
     if(res.status === 200){
       alert('Logged in Successfully')
     }
@@ -98,7 +100,7 @@ const Login = () => {
             <button className="button" onClick={handleLogin}>
               Login
             </button>
-            {!isLogin && <h1>Loading</h1>}
+            
             <p>New User Click Signup</p>
             <button className="button" onClick={() => setSingup(true)}>
               Signup

@@ -14,33 +14,44 @@ const Login = () => {
   const dispatch = useDispatch();
 
   const handleLogin = async () => {
-    console.log(name, password);
-    const res = await axios.post(`${url}/user/login`, {
-      name,
-      password,
-    });
-    console.log(res)
+ 
+    try {
+      const res = await axios.post(`${url}/user/login`, {
+        name,
+        password,
+      });
+      console.log(res)
     if(res.status === 200){
-      alert('Logged')
+      alert('Logged in Successfully')
     }
     localStorage.setItem("Token", res.data.token);
     localStorage.setItem("User", JSON.stringify(res.data.user));
     // console.log(JSON.parse(localStorage.getItem("User")));
     dispatch(addUser(res.data.user));
     setIsLogin(true);
+    } catch (error) {
+      alert(error.response.data.error)
+    }
+    
   };
   const handleSignup = async () => {
-    console.log(name, password);
-    const res = await axios.post(`${url}/user/signup`, {
-      name,
-      password,
-    });
-
-    localStorage.setItem("Token", res.data.token);
-    dispatch(addUser(res.data.user));
-    localStorage.setItem("User", JSON.stringify(res.data.user));
-    console.log(JSON.parse(localStorage.getItem("User")));
-    setIsLogin(true);
+    try {
+      const res = await axios.post(`${url}/user/signup`, {
+        name,
+        password,
+      });
+      if(res.status === 201){
+        alert('Singup Successfully')
+      }
+      localStorage.setItem("Token", res.data.token);
+      dispatch(addUser(res.data.user));
+      localStorage.setItem("User", JSON.stringify(res.data.user));
+     
+      setIsLogin(true);
+    } catch (error) {
+      alert(`${error.response.data.keyValue.name} already exist choose another`)
+    }
+    
   };
   return (
     <>

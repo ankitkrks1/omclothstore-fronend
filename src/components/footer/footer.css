@@ -1,0 +1,15 @@
+.container{
+    display: block;
+    text-align: center;
+    margin:auto auto 10px auto;
+    color: white;
+    /* position: fixed; */
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    font-size: 14px;
+    border: 1px solid black;
+    background-color: black;
+    opacity: .7;
+    padding: 1vw;
+}

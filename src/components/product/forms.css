@@ -1,0 +1,70 @@
+.inputs{
+    display: block;
+    text-align: center;
+
+}
+.inputs form {
+    margin: 2vh 1px auto 1px;
+}
+.search{
+    padding:5px; 
+    border:2px solid #ccc; 
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    margin: 10px;
+}
+.button{
+    padding:5px 15px; 
+    background:rgb(68, 247, 157); 
+   
+    border:0 none;
+    cursor:pointer;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+}
+.page-btn{
+    padding:5px 15px; 
+    background:rgb(61, 216, 243); 
+    margin: 5px;
+    border:0 none;
+    cursor:pointer;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+}
+.page{
+    display: flex;
+    justify-content: center;
+    margin-top: 4vh;
+    
+}
+
+select {
+    padding:5px; 
+    border:2px solid #ccc; 
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    margin: 10px;
+    background: rgb(68, 247, 157);
+  }
+.select label {
+    font-size: 20px;
+    color: rgb(22, 21, 21);
+}
+.option{
+    display: flex;
+    justify-content: center;
+}
+.logout{
+    display: flex;
+    justify-content: right;
+}
+.logout button{
+    padding:5px 15px; 
+    background:rgb(235, 47, 56); 
+    margin: 5px;
+    border:0 none;
+    cursor:pointer;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    color: white;
+}

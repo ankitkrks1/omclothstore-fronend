@@ -1,0 +1,11 @@
+.body{
+   text-align: center;
+    margin: 3vh 10vw auto 10vw;
+    /* border: 1px solid black; */
+    
+}
+.body p{
+    /* text-align: center; */
+    font-size: 20px;
+    text-align: justify;
+}

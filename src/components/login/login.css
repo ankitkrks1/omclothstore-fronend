@@ -1,0 +1,11 @@
+.login{
+    /* border: 1px solid rgb(236, 234, 234); */
+    width: auto;
+    height: 70vh;
+    padding: 10vh;
+}
+.text{
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+}

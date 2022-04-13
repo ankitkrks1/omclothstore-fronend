@@ -6,15 +6,17 @@ import {
   startUserProdLoad,
   startAddProd,
 } from "../../store/product/prodAction";
-
+import Spinner from "../spinner/Spinner";
 const UserProduct = () => {
   const prodList = useSelector((state) => state.product);
   const dispatch = useDispatch();
   const [search, setSearch] = useState();
-  const [page, setPage] = useState(3);
-
+  const [page, setPage] = useState(0);
+  const [isLoading, setIsLoading] = useState(false);
   useEffect(() => {
+  
     dispatch(startUserProdLoad("?sortBy=updatedAt:desc"));
+  
   }, []);
   //Search filer for product
   const handleSearch = (e) => {
@@ -33,7 +35,7 @@ const UserProduct = () => {
   const handlePage = (e) => {
     const name = e.target.name;
 
-    if (name === "-" && page !== 3) {
+    if (name === "-" && page !== 0) {
       setPage(page - 3);
       const query = `?skip=${page}`;
       dispatch(startUserProdLoad(query));
@@ -51,6 +53,10 @@ const UserProduct = () => {
     const price = e.target.price.value;
     console.log(name, quantity, price);
     dispatch(startAddProd({ pName: name, pQuantity: quantity, price }));
+    e.target.name.value = '';
+     e.target.quantity.value = '';
+    e.target.price.value = '';
+    console.log(name, quantity, price);
   };
   return (
     <div>

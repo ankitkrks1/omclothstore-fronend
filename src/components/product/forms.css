@@ -68,3 +68,38 @@ select {
     border-radius: 5px;
     color: white;
 }
+.edit-btn{
+
+        padding:5px 15px; 
+        background:rgb(237, 240, 79); 
+        margin: 5px;
+        border:0 none;
+        cursor:pointer;
+        -webkit-border-radius: 5px;
+        border-radius: 5px;
+    
+}
+.edit-btn-cancel{
+
+    padding:5px 15px; 
+    background:rgb(62, 241, 241); 
+    margin: 5px;
+    border:0 none;
+    cursor:pointer;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+
+}
+
+.edit-btn-delete{
+
+    padding:5px 15px; 
+    background:rgb(255, 4, 4); 
+    margin: 5px;
+    border:0 none;
+    cursor:pointer;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+
+}
+a { color: inherit;}

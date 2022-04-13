@@ -2,20 +2,25 @@ import { React, useState } from "react";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { startRemoveProd } from "../../store/product/prodAction";
-const url = process.env.REACT_APP_API_URL
-const ImageUpload = ({query,uploaded,id})=> {
-    const dispatch = useDispatch()
+import "./upload.css";
+import Spinner from "../spinner/Spinner";
+const url = process.env.REACT_APP_API_URL;
 
-  const [file,setFile]=useState(null)
+const ImageUpload = ({ query, uploaded, id, pName }) => {
+  const dispatch = useDispatch();
+  const [isLoading, setIsLoading] = useState(false);
+  const [file, setFile] = useState(null);
   // On file select (from the pop up)
 
   const onFileChange = (event) => {
     // Update the state
-    setFile(event.target.files[0])
+    setFile(event.target.files[0]);
   };
 
   // On file upload (click the upload button)
   const onImageUpload = async () => {
+    setIsLoading(true);
+
     // Create an object of formData
     const formData = new FormData();
 
@@ -33,20 +38,16 @@ const ImageUpload = ({query,uploaded,id})=> {
     // Send formData object
     const header = {
       "Content-Type": "application/json",
-      "Authorization":
-        `Bearer ${localStorage.getItem('Token')}`,
+      Authorization: `Bearer ${localStorage.getItem("Token")}`,
     };
-   const res = await axios.post(
-      `${url}${query}/${id}`,
-      formData,
-      {
-        headers: header,
-      }
-    );
-    if(res.status===200){
-        uploaded()
+    const res = await axios.post(`${url}${query}/${id}`, formData, {
+      headers: header,
+    });
+    if (res.status === 200) {
+      uploaded();
+      setIsLoading(false);
     }
-    console.log('staus',res.status)
+    console.log("staus", res.status);
   };
 
   // File content to be displayed after
@@ -55,45 +56,57 @@ const ImageUpload = ({query,uploaded,id})=> {
     if (file) {
       return (
         <div>
-          <h2>File Details:</h2>
+          <h2 className="page">File Details:</h2>
 
-          <p>File Name: {file.name}</p>
+          <p className="page">File Name: {file.name}</p>
 
-          <p>File Type: {file.type}</p>
+          <p className="page">File Type: {file.type}</p>
 
-          <p>
-            Last Modified:{" "}
-            {file.lastModifiedDate.toDateString()}
+          <p className="page">
+            Last Modified: {file.lastModifiedDate.toDateString()}
           </p>
         </div>
       );
-      
     } else {
       return (
-        <div>
+        <div className="page">
           <br />
           <h4>Choose before Pressing the Upload button</h4>
         </div>
       );
     }
   };
-  const handleDelete =async ()=>{
-    dispatch(startRemoveProd(id))
-    uploaded()
-  }
+  const handleDelete = async () => {
+   
+    dispatch(startRemoveProd(id));
+    uploaded();
+    
+  };
   return (
-    <div>
-      <h1>Update/Edit-Image</h1>
-      
-      <div>
-        <input type="file" onChange={onFileChange} />
-        <button onClick={onImageUpload}>Upload!</button>
-        <button onClick={()=>uploaded()}>Cancel</button>
-        <button onClick={handleDelete}>Delete Product</button>
-      </div>
-      {fileData()}
-    </div>
+    <>
+      {isLoading ? (
+        <Spinner />
+      ) : (
+        <div>
+          <h1 className="page">Update/Edit-Image of {pName}</h1>
+
+          <div className="page">
+            <input className="page" type="file" onChange={onFileChange} />
+            <button disabled={!file} className="edit-btn" onClick={onImageUpload}>
+              Upload!
+            </button>
+            <button className="edit-btn-cancel" onClick={() => uploaded()}>
+              Cancel
+            </button>
+            <button className="edit-btn-delete" onClick={handleDelete}>
+              Delete Product
+            </button>
+          </div>
+          {fileData()}
+        </div>
+      )}
+    </>
   );
-}
+};
 
 export default ImageUpload;

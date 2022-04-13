@@ -8,7 +8,7 @@ const Bills = () => {
   const billList = useSelector((state) => state.bill);
   const dispatch = useDispatch();
   const [search, setSearch] = useState();
-  const [page,setPage]= useState(3)
+  const [page,setPage]= useState(0)
 
   useEffect(() => {
     dispatch(startLoadIni("?sortBy=updatedAt:desc"));
@@ -29,7 +29,7 @@ const Bills = () => {
   const handlePage =(e)=>{
    const name = e.target.name
   
-    if(name === '-' && page!==3){
+    if(name === '-' && page!==0){
       setPage(page-3)
       const query = `?skip=${page}`
       dispatch(startLoadIni(query))
@@ -49,6 +49,8 @@ const Bills = () => {
     const billAmount = e.target.amount.value;
     // console.log(name, quantity, price);
     dispatch(startAddBill({billNo,billAmount}));
+    e.target.billno.value ='';
+    e.target.amount.value = '';
   };
   return (
     <div>
@@ -66,7 +68,7 @@ const Bills = () => {
           className="search"
             value={search}
             type="text"
-            placeholder="Search Product"
+            placeholder="Search Bill No."
             onChange={(e) => setSearch(e.target.value)}
           />
           <button className="button" type="submit">Search</button>
@@ -84,9 +86,9 @@ const Bills = () => {
       {billList.map((bill) => (
         <Bill bill={bill}/>
       ))}
-      <div>
-        <button name='-' onClick={handlePage}>Previous</button>
-        <button name='+' onClick={handlePage} >Next</button>
+      <div className="page">
+        <button className="page-btn" name='-' onClick={handlePage}>Previous</button>
+        <button className="page-btn" name='+' onClick={handlePage} >Next</button>
       </div>
     </div>
   );

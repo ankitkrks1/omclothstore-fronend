@@ -4,27 +4,29 @@ import { Navigate } from "react-router-dom";
 import { addUser } from "../../store/user/userAction";
 import { useDispatch,} from "react-redux";
 import "./login.css";
+import Spinner from "../spinner/Spinner";
 const url = process.env.REACT_APP_API_URL;
 const Login = () => {
   const [name, setName] = useState();
   const [signup, setSingup] = useState(false);
   const [password, setPassword] = useState();
   const [isLogin, setIsLogin] = useState(false);
-
+  const [isLoading, setIsLoading] = useState(false)
 
 
   const dispatch = useDispatch();
 
   const handleLogin = async () => {
- 
+    setIsLoading(true)
     try {
       const res = await axios.post(`${url}/user/login`, {
         name,
         password,
       });
-      
+   
     if(res.status === 200){
-      alert('Logged in Successfully')
+      // alert('Logged in Successfully')
+      setIsLoading(false)
     }
     localStorage.setItem("Token", res.data.token);
     localStorage.setItem("User", JSON.stringify(res.data.user));
@@ -37,13 +39,15 @@ const Login = () => {
     
   };
   const handleSignup = async () => {
+    setIsLoading(true)
     try {
       const res = await axios.post(`${url}/user/signup`, {
         name,
         password,
       });
       if(res.status === 201){
-        alert('Singup Successfully')
+        // alert('Singup Successfully')
+        setIsLoading(false)
       }
       localStorage.setItem("Token", res.data.token);
       dispatch(addUser(res.data.user));
@@ -57,8 +61,7 @@ const Login = () => {
   };
   return (
     <>
-    {console.log(url)}
-      <div className="text">
+     {isLoading ? <Spinner/>: (<> <div className="text">
         <h3>Login is required to Add new Product with Admin access</h3>
       </div>
       <div className="login">
@@ -108,7 +111,7 @@ const Login = () => {
             {isLogin && <Navigate to="/dashboard" />}
           </div>
         )}
-      </div>
+      </div></>)}
     </>
   );
 };

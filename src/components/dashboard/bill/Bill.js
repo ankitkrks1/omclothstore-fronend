@@ -21,12 +21,12 @@ const Bill = ({ bill }) => {
  
   return (
    <>
-   {edit ? <BillImageLoad query={'/bill/upload/image'} id={bill._id} uploaded={()=>setEdit(false)}/>:  <div className="card-container" key={bill._id}>
+   {edit ? <BillImageLoad pName={bill.billNo} query={'/bill/upload/image'} id={bill._id} uploaded={()=>setEdit(false)}/>:  <div className="card-container" key={bill._id}>
 <div className="card u-clearfix" key={bill._id} >
   <div className="card-body" key={bill._id}>
     <span className="card-number card-circle subtle">Bill No.{bill.billNo}</span>
     <span className="card-author subtle">Amount:- ₹{bill.billAmount}</span>
-    {/* <h2 className="card-title">{prod.pName}</h2> */}
+    <h2 className="card-title">{bill.billNo}</h2>
     {/* <span className="card-description subtle">These last few weeks I have been working hard on a new brunch recipe for you all.</span> */}
     {/* <div className="card-read">Buy</div> */}
     {user.name && <span onClick={()=>setEdit(true)} className="card-tag card-circle subtle">Edit</span>}

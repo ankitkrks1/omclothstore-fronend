@@ -19,7 +19,7 @@ const Product = ({ prod }) => {
   
   return (
    <>
-   {edit ? <ImageUpload query={`/product/upload/image`} id={prod._id} uploaded={()=>setEdit(false)}/>:  <div className="card-container" key={prod._id}>
+   {edit ? <ImageUpload query={`/product/upload/image`} pName={prod.pName} id={prod._id} uploaded={()=>setEdit(false)}/>:  <div className="card-container" key={prod._id}>
 <div className="card u-clearfix" key={prod._id} >
   <div className="card-body">
     <span className="card-number card-circle subtle">Quantity{prod.pQuantity}</span>

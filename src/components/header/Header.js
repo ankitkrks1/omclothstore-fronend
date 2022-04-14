@@ -8,7 +8,7 @@ const Header = () => {
   return (
     <>
       <div className="head">
-       {console.log(user)}
+      
         <h1>Om Cloth Store</h1>
       </div>
       <div className="nav">
